@@ -7,6 +7,7 @@
     "react-ace": "^5.0.1",
     "react-codemirror": "^1.0.0",
     "react-dom": "^15.6.1",
+    "semantic-ui-react": "^0.70.0",
     "socket.io": "^2.0.3",
     "styletron": "^2.5.7",
     "styletron-client": "^2.5.7",

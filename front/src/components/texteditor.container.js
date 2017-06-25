@@ -3,10 +3,9 @@ import io from 'socket.io-client';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import 'brace/mode/python';
-import 'brace/theme/monokai';
+import 'brace/theme/dawn';
 
 import { BACK_URL } from '../App';
-import { TextBox } from '../styles/textbox.style';
 
 export default class TextEditor extends Component {
 	constructor(props) {
@@ -15,11 +14,11 @@ export default class TextEditor extends Component {
 		this.state = {
 			socket: io.connect(BACK_URL),
 			docId: null,
-			code: '',
+			code: ''
 		};
-	
+
 		// Listen for changes made by other people
-		this.state.socket.on('change', ({ code }) => {
+		this.state.socket.on('code_change', ({ code }) => {
 			this.setState({ code });
 		});
 	}
@@ -27,7 +26,7 @@ export default class TextEditor extends Component {
 	componentDidMount() {
 		// We entered the room
 		// TODO: send some data to say who are we
-		this.state.socket.emit('enter')
+		this.state.socket.emit('enter');
 	}
 
 	componentWillUnmount() {
@@ -36,22 +35,22 @@ export default class TextEditor extends Component {
 		this.state.socket.emit('left');
 	}
 
-	onChange = (code) => {
+	onChange = code => {
 		// Handling Editor code change
 		this.setState({ code });
-		this.state.socket.emit('change', { code });
-	}
+		this.state.socket.emit('code_change', { code });
+	};
 
 	render() {
 		return (
 			<AceEditor
-				ref='editor'
+				ref="editor"
 				mode="python"
-				theme="monokai"
+				width="100%"
+				theme="dawn"
 				value={this.state.code}
 				onChange={this.onChange}
-				placeholder="Tapez des caractères"
-				editorProps={{$blockScrolling: Infinity}} // Else warnings are displayed
+				editorProps={{ $blockScrolling: Infinity }} // Else warnings are displayed
 			/>
 		);
 	}
