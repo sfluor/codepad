@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Segment, Icon } from 'semantic-ui-react';
-import io from 'socket.io-client';
 
 import TextEditor from './components/texteditor.container';
 import { Root, Container } from './styles/container.style';
@@ -12,8 +11,7 @@ import EditorOptions from './components/editoroptions.component';
 import { idRegex } from './utils/idgenerator';
 
 // Our socket to communicate with the backend
-const BACK_URL = 'http://localhost:8080';
-const socket = io.connect(BACK_URL);
+import { socket } from './actions';
 
 export default ({ match: { params } }) => {
 	// If the id is a correct id we display the codepad
