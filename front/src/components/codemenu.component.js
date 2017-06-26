@@ -8,9 +8,9 @@ import AddFile from './addfile.component';
 
 const CodeMenu = ({ codes, tab, changeTab }) =>
 	<Menu tabular attached="top">
-		{codes.map((f, i) =>
+		{codes.map((snippet, i) =>
 			<Menu.Item
-				name={"File" + i.toString()}
+				name={snippet.name}
 				active={i == tab}
 				onClick={() => changeTab(i)}
 			/>

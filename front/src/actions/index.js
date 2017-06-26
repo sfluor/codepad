@@ -26,10 +26,10 @@ export function changeLang(language) {
 	};
 }
 
-export function addFile() {
+export function addFile(fileName) {
 	return {
 		type: ADD_FILE,
-		payload: 'File'
+		payload: fileName || 'File'
 	};
 }
 
