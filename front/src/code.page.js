@@ -8,14 +8,23 @@ import CodeTitle from './components/codetitle.component';
 import TopBar from './components/topbar.component';
 import EditorOptions from './components/editoroptions.component';
 
-export const BACK_URL = 'http://localhost:8080';
+import { idRegex } from './utils/idgenerator';
 
-export default () =>
-	<Root>
-		<TopBar />
-		<Container>
-			<CodeTitle title="Code" />
-			<TextEditor />
-		</Container>
-		<Footer> Made by Sfluor </Footer>
-	</Root>;
+
+export default ({ match: { params } }) =>{
+	// If the id is a correct id we display the codepad
+	if (params.id.match(idRegex))
+		return (
+			<Container>
+				<CodeTitle title="Code" />
+				<TextEditor docId={params.id} />
+			</Container>
+		);
+
+	// Else the id is not correct
+	// TODO/ Better error page
+	else
+		return (
+			<div>Sorry but your id is not a valid Id, try to go to homePage </div>
+		);
+}
