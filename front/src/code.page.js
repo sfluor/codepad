@@ -10,19 +10,12 @@ import EditorOptions from './components/editoroptions.component';
 
 export const BACK_URL = 'http://localhost:8080';
 
-class App extends Component {
-	render() {
-		return (
-			<Root>
-				<TopBar />
-				<Container>
-					<CodeTitle title="Code" />
-					<TextEditor />
-				</Container>
-				<Footer> Made by Sfluor </Footer>
-			</Root>
-		);
-	}
-}
-
-export default App;
+export default () =>
+	<Root>
+		<TopBar />
+		<Container>
+			<CodeTitle title="Code" />
+			<TextEditor />
+		</Container>
+		<Footer> Made by Sfluor </Footer>
+	</Root>;

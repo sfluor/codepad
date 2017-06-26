@@ -5,7 +5,7 @@ import AceEditor from 'react-ace';
 import 'brace/mode/python';
 import 'brace/theme/dawn';
 
-import { BACK_URL } from '../App';
+import { BACK_URL } from '../';
 
 export default class TextEditor extends Component {
 	constructor(props) {
@@ -50,7 +50,6 @@ export default class TextEditor extends Component {
 	};
 
 	render() {
-		console.log('code', this.state.code);
 		// If we're still waiting for the server
 		if (this.state.code === null)
 			return <div>'Loading...'</div>
