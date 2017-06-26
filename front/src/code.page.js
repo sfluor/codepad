@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Icon } from 'semantic-ui-react';
+import { Segment, Icon } from 'semantic-ui-react';
 
 import TextEditor from './components/texteditor.container';
 import { Root, Container } from './styles/container.style';
@@ -18,8 +18,10 @@ export default ({ match: { params } }) => {
 			<Container>
 				<CodeTitle title="Code" />
 				<CodeMenu />
-				<EditorOptions />
-				<TextEditor docId={params.id} />
+				<Segment attached='bottom'>
+					<EditorOptions />
+					<TextEditor docId={params.id} />
+				</Segment>
 			</Container>
 		);
 	else
