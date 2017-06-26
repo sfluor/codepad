@@ -1,10 +1,12 @@
 import React from 'react';
-import { Menu, Icon } from 'semantic-ui-react';
+import { Menu } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { addFile, changeTab } from '../actions';
+import { changeTab } from '../actions';
 
-const CodeMenu = ({ codes, addFile, tab, changeTab }) =>
+import AddFile from './addfile.component';
+
+const CodeMenu = ({ codes, tab, changeTab }) =>
 	<Menu tabular attached="top">
 		{codes.map((f, i) =>
 			<Menu.Item
@@ -13,9 +15,7 @@ const CodeMenu = ({ codes, addFile, tab, changeTab }) =>
 				onClick={() => changeTab(i)}
 			/>
 		)}
-		<Menu.Item onClick={addFile}>
-			<Icon name="add" /> Add File
-		</Menu.Item>
+		<AddFile />
 	</Menu>;
 
 function mapStateToProps({ codes, tab }) {
@@ -23,7 +23,7 @@ function mapStateToProps({ codes, tab }) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({ addFile, changeTab }, dispatch);
+	return bindActionCreators({ changeTab }, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CodeMenu);
