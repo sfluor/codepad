@@ -17,6 +17,7 @@ export default ({ match: { params } }) =>{
 		return (
 			<Container>
 				<CodeTitle title="Code" />
+				<EditorOptions />
 				<TextEditor docId={params.id} />
 			</Container>
 		);
@@ -25,6 +26,6 @@ export default ({ match: { params } }) =>{
 	// TODO/ Better error page
 	else
 		return (
-			<div>Sorry but your id is not a valid Id, try to go to homePage </div>
+			<div>Sorry but your id is not a valid one, try to go to homePage </div>
 		);
 }
