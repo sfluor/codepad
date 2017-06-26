@@ -13,9 +13,17 @@ export default class TextEditor extends Component {
 		// Initial state with socket connection
 		this.state = {
 			socket: io.connect(BACK_URL),
-			docId: null,
-			code: ''
+			docId: 'b94a1cfd-8e51-4719-a897-469b393d88e5',
+			code: null
 		};
+
+		// We send the id of our project to see if it already exists or no
+		this.state.socket.emit('docId', { docId: this.state.docId });
+
+		// We get the info back from the server
+		this.state.socket.on('docId', ({ code }) => {
+			this.setState({ code });
+		});
 
 		// Listen for changes made by other people
 		this.state.socket.on('code_change', ({ code }) => {
@@ -42,6 +50,12 @@ export default class TextEditor extends Component {
 	};
 
 	render() {
+		console.log('code', this.state.code);
+		// If we're still waiting for the server
+		if (this.state.code === null)
+			return <div>'Loading...'</div>
+
+		// Else we got an answer
 		return (
 			<AceEditor
 				ref="editor"
