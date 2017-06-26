@@ -10,10 +10,11 @@ const CodeMenu = ({ codes, tab, changeTab }) =>
 	<Menu tabular attached="top">
 		{codes.map((snippet, i) =>
 			<Menu.Item
-				name={snippet.name}
 				active={i == tab}
 				onClick={() => changeTab(i)}
-			/>
+			>
+				{snippet.name}
+			</Menu.Item>
 		)}
 		<AddFile />
 	</Menu>;
