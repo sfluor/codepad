@@ -9,5 +9,10 @@ export const Container = styled('div', () => ({
 	marginRight: '15%',
 	display: 'flex',
 	flexDirection: 'column',
-	minHeight: '80%'
+	minHeight: '80%',
+	'overflow-x': 'auto',
+	'@media (max-width: 600px)': {
+		marginLeft: '5%',
+		marginRight: '5%'
+	}
 }));

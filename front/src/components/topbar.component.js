@@ -6,11 +6,12 @@ import { Brand, TopBar } from '../styles/topbar.style';
 
 export default () =>
 	<TopBar>
-		<Link to='/'>
+		<Link to="/">
 			<Brand>
 				<Icon name="file code outline" size="large" />
 				CodePad
 			</Brand>
 		</Link>
+		<div />
 		<div />
 	</TopBar>;

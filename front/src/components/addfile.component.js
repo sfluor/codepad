@@ -26,7 +26,7 @@ class AddFile extends Component {
 					type="text"
 					value={this.state.fileName}
 					onChange={this.onInputChange}
-					placeholder="FileName"
+					placeholder="Add a File"
 				>
 					<input />
 					<Button icon="add" onClick={this.handleClick} />
