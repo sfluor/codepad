@@ -43,8 +43,9 @@ class TextEditor extends Component {
 		});
 
 		// Listen for changes made by other people only if Id matches
-		this.props.socket.on('code_change', ({ payload }) => {
-			this.props.remoteChangeCode(payload);
+		this.props.socket.on('code_change', ({ payload, Id }) => {
+			if (this.props.docId === Id)
+				this.props.remoteChangeCode(payload);
 		});
 	}
 
@@ -56,8 +57,11 @@ class TextEditor extends Component {
 	};
 
 	render() {
+		// Shortcut for object containing name + code
+		const codeData = this.props.codes[this.props.tab];
+
 		// If we're still waiting for the server
-		if (this.props.codes[this.props.tab] === null)
+		if ( codeData === null || codeData === undefined)
 			return <div>Loading...</div>;
 
 		// Else we got an answer
@@ -66,7 +70,7 @@ class TextEditor extends Component {
 				mode={this.props.language}
 				width="100%"
 				theme={this.props.theme}
-				value={this.props.codes[this.props.tab].code}
+				value={codeData.code}
 				onChange={this.onChange}
 				editorProps={{ $blockScrolling: Infinity }} // Else warnings are displayed
 			/>
