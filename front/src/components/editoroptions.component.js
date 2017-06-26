@@ -4,19 +4,19 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { changeTheme, changeLang } from '../actions';
-import {
-	JS,
-	Python,
-	CSharp,
-	CSS,
-	HTML,
-	MySQL,
-	TS,
-	Java,
-	Ruby,
-	Json,
-	Golang
-} from '../logos/logos';
+// import {
+// 	JS,
+// 	Python,
+// 	CSharp,
+// 	CSS,
+// 	HTML,
+// 	MySQL,
+// 	TS,
+// 	Java,
+// 	Ruby,
+// 	Json,
+// 	Golang
+// } from '../logos/logos';
 
 const languageOptions = [
 	{
@@ -26,6 +26,10 @@ const languageOptions = [
 	{
 		text: 'Python',
 		value: 'python',
+	},
+	{
+		text: 'JavaScript',
+		value: 'javascript',
 	}
 ]
 

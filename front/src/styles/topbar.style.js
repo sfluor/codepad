@@ -18,5 +18,5 @@ export const TopBar = styled('div', () => ({
 
 export const Brand = styled('h1', () => ({
 	display: 'flex',
-	alignItems: 'center'
+	alignItems: 'center',
 }))

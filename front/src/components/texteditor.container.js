@@ -4,8 +4,9 @@ import brace from 'brace';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
 import 'brace/mode/python';
-import 'brace/theme/dawn';
 import 'brace/mode/ruby';
+import 'brace/mode/javascript';
+import 'brace/theme/dawn';
 import 'brace/theme/github';
 
 import { BACK_URL } from '../';
