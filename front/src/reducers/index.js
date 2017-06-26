@@ -7,6 +7,6 @@ import LanguageReducer from './language.reducer';
 const rootReducer = combineReducers({
 	theme: ThemeReducer,
 	language: LanguageReducer
-});
+})
 
-export default rootReducer
+export default rootReducer;

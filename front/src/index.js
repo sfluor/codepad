@@ -9,8 +9,6 @@ import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import reducers from './reducers';
 
-
-
 // Styletron
 const styleSheet = document.createElement('style');
 document.head.appendChild(styleSheet);
@@ -20,7 +18,9 @@ const styletron = new Styletron([styleSheet], { prefix: 'st-' });
 export const BACK_URL = 'http://localhost:8080';
 
 ReactDOM.render(
-	<Provider store={createStore(reducers)}><StyletronProvider styletron={styletron}><App /></StyletronProvider></Provider>,
+	<Provider store={createStore(reducers)}>
+		<StyletronProvider styletron={styletron}><App /></StyletronProvider>
+	</Provider>,
 	document.getElementById('root')
 );
 registerServiceWorker();

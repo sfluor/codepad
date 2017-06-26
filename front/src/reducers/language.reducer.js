@@ -1,9 +1,10 @@
 import { CHANGE_LANG } from '../actions/';
 
-export default function(state='', action){
+export default function(state={}, action){
 	switch(action.type){
 		case CHANGE_LANG:
-			return action.payload.language;
-		return state;
+			return action.payload;
+		default:
+			return state;
 	}
 }
