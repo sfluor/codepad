@@ -35,7 +35,7 @@ io.sockets.on('connection', socket => {
 	// The text changed, we send the new version to everyone
 	socket.on('code_change', payload => {
 		code[Id] = payload.code;
-		socket.broadcast.emit('code_change', payload);
+		socket.broadcast.emit('code_change', { code: payload.code, Id });
 	});
 });
 

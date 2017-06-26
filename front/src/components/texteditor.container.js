@@ -11,9 +11,10 @@ export default class TextEditor extends Component {
 	constructor(props) {
 		super(props);
 		// Initial state with socket connection
+		// We get the docId from the URL params
 		this.state = {
 			socket: io.connect(BACK_URL),
-			docId: 'b94a1cfd-8e51-4719-a897-469b393d88e5',
+			docId: this.props.docId,
 			code: null
 		};
 
@@ -25,9 +26,10 @@ export default class TextEditor extends Component {
 			this.setState({ code });
 		});
 
-		// Listen for changes made by other people
-		this.state.socket.on('code_change', ({ code }) => {
-			this.setState({ code });
+		// Listen for changes made by other people only if Id matches
+		this.state.socket.on('code_change', ({ code, Id }) => {
+			if (Id === this.props.docId)
+				this.setState({ code });
 		});
 	}
 
@@ -46,10 +48,12 @@ export default class TextEditor extends Component {
 	onChange = code => {
 		// Handling Editor code change
 		this.setState({ code });
-		this.state.socket.emit('code_change', { code });
+		// We send our projet Id to identify us
+		this.state.socket.emit('code_change', { code, Id: this.state.docId });
 	};
 
 	render() {
+		console.log(this.state.docId);
 		// If we're still waiting for the server
 		if (this.state.code === null)
 			return <div>'Loading...'</div>
