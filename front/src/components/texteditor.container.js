@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import io from 'socket.io-client';
 import brace from 'brace';
 import AceEditor from 'react-ace';
+import { connect } from 'react-redux';
 import 'brace/mode/python';
 import 'brace/theme/dawn';
+import 'brace/mode/ruby';
+import 'brace/theme/github';
 
 import { BACK_URL } from '../';
 
-export default class TextEditor extends Component {
+class TextEditor extends Component {
 	constructor(props) {
 		super(props);
 		// Initial state with socket connection
@@ -56,15 +59,14 @@ export default class TextEditor extends Component {
 		console.log(this.state.docId);
 		// If we're still waiting for the server
 		if (this.state.code === null)
-			return <div>'Loading...'</div>
+			return <div>Loading...</div>
 
 		// Else we got an answer
 		return (
 			<AceEditor
-				ref="editor"
-				mode="python"
+				mode={this.props.language}
 				width="100%"
-				theme="dawn"
+				theme={this.props.theme}
 				value={this.state.code}
 				onChange={this.onChange}
 				editorProps={{ $blockScrolling: Infinity }} // Else warnings are displayed
@@ -72,3 +74,9 @@ export default class TextEditor extends Component {
 		);
 	}
 }
+
+function mapStateToProps({ theme, language }){
+	return { theme, language};
+};
+
+export default connect(mapStateToProps)(TextEditor);

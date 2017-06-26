@@ -4,17 +4,13 @@ export const CHANGE_LANG = 'CHANGE_LANG';
 export function changeTheme(theme){
 	return {
 		type: CHANGE_THEME,
-		payload: {
-			theme
-		}
+		payload: theme
 	};
 };
 
 export function changeLang(language){
 	return {
 		type: CHANGE_LANG,
-		payload: {
-			language
-		}
+		payload: language
 	};
 };

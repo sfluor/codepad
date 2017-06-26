@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { changeTheme, changeLang } from '../actions';
 import {
 	JS,
 	Python,
@@ -27,8 +31,8 @@ const languageOptions = [
 
 const themeOptions = [
 	{
-		text: 'Eclipse',
-		value: 'Eclipse',
+		text: 'Github',
+		value: 'github',
 	},
 	{
 		text: 'Dawn',
@@ -36,35 +40,38 @@ const themeOptions = [
 	}
 ]
 
-export default class EditorOptions extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			language: 'python', // Programming language
-			theme: 'dawn' // Text editor theme
-		};
-	}
+class EditorOptions extends Component {
 
-	onLanguageChange = (e, { value }) => (this.setState({ language: value}))
+	onLanguageChange = (e, { value }) => (this.props.changeLang(value))
 
-	onThemeChange = (e, { value }) => (this.setState({ theme: value }))
+	onThemeChange = (e, { value }) => (this.props.changeTheme(value))
 
 	render() {
 		return (
 			<div>
 				<Dropdown 
 					selection
-					value={this.state.language}
+					value={this.props.language}
 					options={languageOptions}
 					onChange={this.onLanguageChange}
 				/>
 				<Dropdown 
 					selection
-					value={this.state.theme}
+					value={this.props.theme}
 					options={themeOptions}
 					onChange={this.onThemeChange}
 				/>
 			</div>
 		);
 	}
+};
+
+function mapStateToProps({ theme, language }){
+	return { theme, language};
+};
+
+function mapDispatchToProps(dispatch){
+	return bindActionCreators({ changeTheme, changeLang }, dispatch);
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(EditorOptions);
