@@ -20,46 +20,115 @@ import { changeTheme, changeLang } from '../actions';
 
 const languageOptions = [
 	{
-		text: 'Ruby',
-		value: 'ruby',
+		text: 'JavaScript',
+		value: 'javascript'
 	},
 	{
 		text: 'Python',
-		value: 'python',
+		value: 'python'
 	},
 	{
-		text: 'JavaScript',
-		value: 'javascript',
+		text: 'HTML',
+		value: 'html'
+	},
+	{
+		text: 'Markdown',
+		value: 'markdown'
+	},
+	{
+		text: 'Ruby',
+		value: 'ruby'
+	},
+
+	{
+		text: 'Java',
+		value: 'java'
+	},
+	{
+		text: 'Typescript',
+		value: 'typescript'
+	},
+	{
+		text: 'JSON',
+		value: 'json'
+	},
+	{
+		text: 'Go',
+		value: 'golang'
+	},
+	{
+		text: 'CSS',
+		value: 'css'
+	},
+
+	{
+		text: 'C #',
+		value: 'csharp'
+	},
+	{
+		text: 'MySQL',
+		value: 'mysql'
+	},
+	{
+		text: 'XML',
+		value: 'xml'
 	}
-]
+];
 
 const themeOptions = [
 	{
 		text: 'Github',
-		value: 'github',
+		value: 'github'
 	},
 	{
 		text: 'Dawn',
-		value: 'dawn',
+		value: 'dawn'
+	},
+	{
+		text: 'Monokai',
+		value: 'monokai'
+	},
+	{
+		text: 'Terminal',
+		value: 'terminal'
+	},
+	{
+		text: 'Twilight',
+		value: 'twilight'
+	},
+	{
+		text: 'Xcode',
+		value: 'xcode'
+	},
+	{
+		text: 'Solarized Light',
+		value: 'solarized_light'
+	},
+	{
+		text: 'Textmate',
+		value: 'textmate'
+	},
+	{
+		text: 'Kuroir',
+		value: 'kuroir'
 	}
-]
+];
 
 class EditorOptions extends Component {
+	onLanguageChange = (e, { value }) => this.props.changeLang(value);
 
-	onLanguageChange = (e, { value }) => (this.props.changeLang(value))
-
-	onThemeChange = (e, { value }) => (this.props.changeTheme(value))
+	onThemeChange = (e, { value }) => this.props.changeTheme(value);
 
 	render() {
 		return (
 			<div>
-				<Dropdown 
+				<Dropdown
 					selection
 					value={this.props.language}
 					options={languageOptions}
 					onChange={this.onLanguageChange}
 				/>
-				<Dropdown 
+				<Dropdown
 					selection
 					value={this.props.theme}
 					options={themeOptions}
@@ -68,13 +137,13 @@ class EditorOptions extends Component {
 			</div>
 		);
 	}
-};
+}
 
-function mapStateToProps({ theme, language }){
-	return { theme, language};
-};
+function mapStateToProps({ theme, language }) {
+	return { theme, language };
+}
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
 	return bindActionCreators({ changeTheme, changeLang }, dispatch);
 }
 

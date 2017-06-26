@@ -3,10 +3,31 @@ import io from 'socket.io-client';
 import brace from 'brace';
 import AceEditor from 'react-ace';
 import { connect } from 'react-redux';
+
+// Languages
 import 'brace/mode/python';
 import 'brace/mode/ruby';
 import 'brace/mode/javascript';
-import 'brace/theme/dawn';
+import 'brace/mode/golang';
+import 'brace/mode/java';
+import 'brace/mode/css';
+import 'brace/mode/html';
+import 'brace/mode/xml';
+import 'brace/mode/markdown';
+import 'brace/mode/mysql';
+import 'brace/mode/typescript';
+import 'brace/mode/csharp';
+import 'brace/mode/json';
+
+// Themes
+import 'brace/theme/monokai';
+import 'brace/theme/tomorrow';
+import 'brace/theme/terminal';
+import 'brace/theme/twilight';
+import 'brace/theme/xcode';
+import 'brace/theme/kuroir';
+import 'brace/theme/textmate';
+import 'brace/theme/solarized_light';
 import 'brace/theme/github';
 
 import { BACK_URL } from '../';
