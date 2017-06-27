@@ -32,9 +32,10 @@ export default class CodeTitle extends Component {
 	render() {
 		return (
 			<div>
-				<Header as="h2">
+				<Header as="h2" block style={{marginTop: '2px'}}>
 					<Input 
-						transparent 
+						transparent
+						fluid
 						value={this.state.title}
 						onChange={this.onInputChange}
 						placeholder="Our Fantastic Project" 
