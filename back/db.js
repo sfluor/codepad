@@ -68,15 +68,12 @@ function getProject(docId) {
 					})
 				);
 			});
-			// Retrieving title
-			let title = client.getAsync(`${docId}:title`).then(title => {
+			// Retrieving title and push it to the end
+			data.push(client.getAsync(`${docId}:title`).then(title => {
 				return title;
-			});
+			}));
 			// Wait for promise to end and return our data
-			return {
-				title: Promise.all(title),
-				codes: Promise.all(data)
-			};
+			return Promise.all(data)
 		} else {
 			// We create a new project
 			newProject(docId);
