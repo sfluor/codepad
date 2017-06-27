@@ -16,6 +16,9 @@ function newProject(docId) {
 	// Creating docId: list length
 	client.set(docId, 1, redis.print);
 
+	// Creating docId:title for the project title
+	client.set(`${docId}:title`, 'Enter a Project Name', redis.print);
+
 	// Creating docId:num : hash
 	client.hmset(`${docId}:index:0`, {
 		name: 'fileName',
@@ -65,19 +68,35 @@ function getProject(docId) {
 					})
 				);
 			});
+			// Retrieving title
+			let title = client.getAsync(`${docId}:title`).then(title => {
+				return title;
+			});
 			// Wait for promise to end and return our data
-			return Promise.all(data);
+			return {
+				title: Promise.all(title),
+				data: Promise.all(data)
+			};
 		} else {
 			// We create a new project
 			newProject(docId);
-			return [
-				{
-					name: 'fileName',
-					code: 'Start hacking !'
-				}
-			];
+			project = {
+				title: 'Enter a Project Name',
+				data: [
+					{
+						name: 'fileName',
+						code: 'Start hacking !'
+					}
+				]
+			};
+			return project;
 		}
 	});
+}
+
+function updateTitle(docId, newTitle) {
+	// Updating the project title
+	client.set(`${docId}:title`, newTitle, redis.print);
 }
 
 // Simple range function, range(2) = [0, 1]
@@ -87,5 +106,6 @@ function range(int) {
 
 module.exports = {
 	updateProject,
-	getProject
+	getProject,
+	updateTitle
 };
