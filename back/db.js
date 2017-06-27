@@ -69,23 +69,23 @@ function getProject(docId) {
 				);
 			});
 			// Retrieving title and push it to the end
-			data.push(client.getAsync(`${docId}:title`).then(title => {
-				return title;
-			}));
+			data.push(
+				client.getAsync(`${docId}:title`).then(title => {
+					return title;
+				})
+			);
 			// Wait for promise to end and return our data
-			return Promise.all(data)
+			return Promise.all(data);
 		} else {
 			// We create a new project
 			newProject(docId);
-			project = {
-				title: 'Enter a Project Name',
-				codes: [
-					{
-						name: 'fileName',
-						code: 'Start hacking !'
-					}
-				]
-			};
+			project = [
+				{
+					name: 'fileName',
+					code: 'Start hacking !'
+				},
+				'Enter a Project Name'
+			];
 			return project;
 		}
 	});
