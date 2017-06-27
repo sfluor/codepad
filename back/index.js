@@ -12,14 +12,22 @@ io.sockets.on('connection', socket => {
 	// Client sent the Id of the project
 	socket.on('docId', ({ docId }) => {
 		// Retrieve data from Redis store
-		db.getProject(docId).then(data => {
+		db.getProject(docId).then({ title, data } => {
 			// Send data to the user
-			socket.emit('docId', data);
+			socket.emit('docId', { title, data });
 		});
 
 		// New value for docId
 		Id = docId;
 	});
+
+	// The title changed, we send the new version to everyone
+	socket.on('title_change', { title }) => {
+		// Updating our store with the new title
+		db.updateTitle(Id, title);
+		socket.broadcast.emit('title_change', { title });
+	}
+
 
 	// The text changed, we send the new version to everyone
 	socket.on('code_change', payload => {
