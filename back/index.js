@@ -28,7 +28,7 @@ io.sockets.on('connection', socket => {
 	socket.on('title_change', ({ title }) => {
 		// Updating our store with the new title
 		db.updateTitle(Id, title);
-		socket.broadcast.emit('title_change', { title });
+		socket.broadcast.emit('title_change', { title, Id });
 	});
 
 

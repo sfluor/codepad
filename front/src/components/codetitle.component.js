@@ -13,22 +13,21 @@ export default class CodeTitle extends Component {
 
 		// The text editor sent a request so we just have to handle the response
 		// We get the info back from the server and set the title
-		this.props.socket.on('docId', code => {
-			// TODO: Extract title from data and setstate
+		this.props.socket.on('docId', ({ title }) => {
+			this.setState({ title });
 		});
 
 		// Listen for changes made by other people only if Id matches
-		this.props.socket.on('title_change', ({ payload, Id }) => {
+		this.props.socket.on('title_change', ({ title, Id }) => {
 			if (this.props.docId === Id)
-				console.log('TODO')
-				// TODO: Extract title and set state
+				this.setState({ title });
 		});
 	}
 
 	// Handling title Change
 	onInputChange = (e, { value }) => {
-		// TODO: Emit title_change
 		this.setState({ title: value });
+		this.props.socket.emit('title_change', { title: value });
   }
 	render() {
 		return (

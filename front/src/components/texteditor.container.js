@@ -38,14 +38,14 @@ class TextEditor extends Component {
 		this.props.socket.emit('docId', { docId: this.props.docId });
 
 		// We get the info back from the server
-		this.props.socket.on('docId', code => {
-			this.props.fetchCode(code);
+		this.props.socket.on('docId', ({ codes }) => {
+			this.props.fetchCode(codes);
 		});
 
 		// Listen for changes made by other people only if Id matches
-		this.props.socket.on('code_change', ({ payload, Id }) => {
+		this.props.socket.on('code_change', ({ codes, Id }) => {
 			if (this.props.docId === Id)
-				this.props.remoteChangeCode(payload);
+				this.props.remoteChangeCode(codes);
 		});
 	}
 

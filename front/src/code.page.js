@@ -18,7 +18,10 @@ export default ({ match: { params } }) => {
 	if (params.id.match(idRegex))
 		return (
 			<Container>
-				<CodeTitle socket={socket} />
+				<CodeTitle 
+					socket={socket} 
+					docId={params.id}
+				/>
 				<CodeMenu />
 				<Segment attached='bottom'>
 					<EditorOptions />
