@@ -12,9 +12,9 @@ io.sockets.on('connection', socket => {
 	// Client sent the Id of the project
 	socket.on('docId', ({ docId }) => {
 		// Retrieve data from Redis store
-		db.getProject(docId).then({ title, data } => {
+		db.getProject(docId).then({ title, codes } => {
 			// Send data to the user
-			socket.emit('docId', { title, data });
+			socket.emit('docId', { title, codes });
 		});
 
 		// New value for docId

@@ -75,14 +75,14 @@ function getProject(docId) {
 			// Wait for promise to end and return our data
 			return {
 				title: Promise.all(title),
-				data: Promise.all(data)
+				codes: Promise.all(data)
 			};
 		} else {
 			// We create a new project
 			newProject(docId);
 			project = {
 				title: 'Enter a Project Name',
-				data: [
+				codes: [
 					{
 						name: 'fileName',
 						code: 'Start hacking !'
