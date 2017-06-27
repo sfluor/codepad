@@ -12,6 +12,7 @@ const CodeMenu = ({ codes, tab, changeTab }) =>
 			<Menu.Item
 				active={i == tab}
 				onClick={() => changeTab(i)}
+				key={i}
 			>
 				{snippet.name}
 			</Menu.Item>
